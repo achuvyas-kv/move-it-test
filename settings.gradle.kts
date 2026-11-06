@@ -19,4 +19,6 @@ dependencyResolutionManagement {
 include(":motion-core")
 include(":motion-android")
 include(":motion-debug")
+include(":motion-link")
+include(":tvApp")
 include(":androidApp")

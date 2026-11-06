@@ -8,6 +8,10 @@ androidx-activity = "1.13.0"
 androidx-lifecycle = "2.11.0"
 camerax = "1.6.2"
 mediapipe = "1.2.2"
+ktor = "3.6.1"
+kotlinx-serialization = "1.12.0"
+zxing = "3.5.4"
+gms-code-scanner = "16.1.0"
 android-compileSdk = "37"
 android-minSdk = "24"
 android-targetSdk = "37"
@@ -26,6 +30,11 @@ camerax-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "ca
 camerax-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camerax" }
 camerax-view = { module = "androidx.camera:camera-view", version.ref = "camerax" }
 mediapipe-tasks-vision = { module = "com.google.mediapipe:tasks-vision", version.ref = "mediapipe" }
+ktor-network = { module = "io.ktor:ktor-network", version.ref = "ktor" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+zxing-core = { module = "com.google.zxing:core", version.ref = "zxing" }
+gms-code-scanner = { module = "com.google.android.gms:play-services-code-scanner", version.ref = "gms-code-scanner" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -33,4 +42,5 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 android-kmp-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

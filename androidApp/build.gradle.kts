@@ -34,6 +34,8 @@ android {
 dependencies {
     implementation(projects.motionAndroid)
     implementation(projects.motionDebug)
+    implementation(projects.motionLink)
+    implementation(libs.gms.code.scanner)
     implementation(libs.camerax.view)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)

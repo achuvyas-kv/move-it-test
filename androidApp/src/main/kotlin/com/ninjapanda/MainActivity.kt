@@ -2,6 +2,7 @@ package com.ninjapanda
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
@@ -14,8 +15,8 @@ import androidx.core.content.ContextCompat
 class MainActivity : ComponentActivity() {
     private val cameraGranted = mutableStateOf(false)
 
-    private val requestCamera = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-        cameraGranted.value = granted
+    private val requestPermissions = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
+        cameraGranted.value = result[Manifest.permission.CAMERA] ?: cameraGranted.value
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,13 +26,18 @@ class MainActivity : ComponentActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         cameraGranted.value = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
-        if (!cameraGranted.value) requestCamera.launch(Manifest.permission.CAMERA)
+        askPermissions()
 
         setContent {
-            MotionDebugApp(
-                cameraGranted = cameraGranted.value,
-                onRequestCamera = { requestCamera.launch(Manifest.permission.CAMERA) },
-            )
+            PhoneApp(cameraGranted = cameraGranted.value, onRequestCamera = ::askPermissions)
         }
+    }
+
+    private fun askPermissions() {
+        val wanted = buildList {
+            if (!cameraGranted.value) add(Manifest.permission.CAMERA)
+            if (Build.VERSION.SDK_INT >= 37) add("android.permission.ACCESS_LOCAL_NETWORK")
+        }
+        if (wanted.isNotEmpty()) requestPermissions.launch(wanted.toTypedArray())
     }
 }
